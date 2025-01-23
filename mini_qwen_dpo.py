@@ -74,8 +74,8 @@ trainer = DPOTrainer(
     args=training_args,
     tokenizer=tokenizer,
     dataset_num_proc=16,
-    max_length=1024,
-    max_prompt_length=512,
+    max_length=128,
+    max_prompt_length=64,
 )
 
 # 开始训练
