@@ -76,7 +76,7 @@ def preprocess_dataset(examples):
         k: list(chain(*tokenized_examples[k])) for k in tokenized_examples.keys()
     }
     total_length = len(concatenated_examples[list(concatenated_examples.keys())[0]])
-    block_size = 1024  # 分块大小
+    block_size = 128  # 分块大小，默认1024
     total_length = (total_length // block_size) * block_size  # 对齐块大小
 
     result = {
@@ -106,13 +106,13 @@ training_args = TrainingArguments(
     warmup_ratio=0.1,
     lr_scheduler_type="cosine",
     num_train_epochs=1,
-    per_device_train_batch_size=12,
-    gradient_accumulation_steps=16,
+    per_device_train_batch_size=1,
+    gradient_accumulation_steps=1,
     save_steps=100_000,  # 保存中间模型
     save_total_limit=3,
     bf16=True,
     # save_only_model=True,
-    logging_steps=20,
+    logging_steps=1,
 )
 
 # 初始化Trainer
