@@ -18,7 +18,7 @@ tokenizer = AutoTokenizer.from_pretrained(model_path)
 def find_files(dirs):
     files=[]
     for dir in dirs:
-        base_path = os.path.join("data/sft", dir)
+        base_path = os.path.join("mini_data/sft", dir)
         for dirpath, _, filenames in os.walk(base_path):
             for filename in filenames:
                 if filename.endswith(".parquet"):
@@ -63,13 +63,13 @@ training_args = SFTConfig(
     warmup_ratio=0.1,
     lr_scheduler_type="cosine",
     num_train_epochs=3,
-    per_device_train_batch_size=12,
-    gradient_accumulation_steps=16,
+    per_device_train_batch_size=1,
+    gradient_accumulation_steps=1,
     save_strategy="epoch",  # 保存中间模型
     save_total_limit=3,
     bf16=True,
     # save_only_model=True,
-    logging_steps=20,
+    logging_steps=1,
 )
 
 # 初始化Trainer
